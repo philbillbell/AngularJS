@@ -1,0 +1,39 @@
+<html ng-app>
+<head></head>
+	<body >
+	<h2>hello World</h2>
+	
+        <div ng-controller="simpleController">
+            Name:
+            <br />
+
+            <input type="text" ng-model="name" /> {{name}}
+
+            <div class="container=" " ng-init="names=['Philip', 'Gail', 'James', 'Matthew']">
+                <h3>Going to loop through the name list</h3>
+                <ul>
+                    <li ng-repeat="personName in names">{{personName}}</li>
+                </ul>
+            </div>
+
+
+            <ul>
+                <li ng-repeat="personDetails in customers | filter:name | orderBy:'city'">{{personDetails.name | uppercase}} - {{personDetails.city | lowercase}}</li>
+            </ul>
+        </div>
+	
+        <script src="angular.min.js"></script>
+        <script>
+            function simpleController($scope) {
+                $scope.customers = [
+                    { name: 'Philip Bell', city: 'London' },
+                    { name: 'Gail Bell', city: 'Bath' },
+                    { name: 'James Bell', city: 'Manchester' },
+                    { name: 'Matthew Bell', city: 'Newcastle' }
+                ];
+            }
+
+        </script>
+	
+	</body>
+</html>
