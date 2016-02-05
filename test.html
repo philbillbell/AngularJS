@@ -24,15 +24,14 @@
         <script>
             var demoApp = angular.module('demoApp', []);
 
-           function simpleController($scope) {
-               $scope.customers = [
-                   { name: 'Philip Bell', city: 'London' },
-                   { name: 'Gail Bell', city: 'Bath' },
-                   { name: 'James Bell', city: 'Manchester' },
-                   { name: 'Matthew Bell', city: 'Newcastle' }
-               ];
-           }
-           demoApp.controller('simpleController', simpleController);
+            demoApp.controller('simpleController', function ($scope) {
+                $scope.customers = [
+                    { name: 'Philip Bell', city: 'London' },
+                    { name: 'Gail Bell', city: 'Bath' },
+                    { name: 'James Bell', city: 'Manchester' },
+                    { name: 'Matthew Bell', city: 'Newcastle' }
+                ];
+            });
         </script>
        
         
