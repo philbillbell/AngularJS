@@ -4,25 +4,29 @@
     <title>Starting to use AngularJS</title>
 </head>
 
-	<body  >	
-        
-        <div class="container" data-ng-controller="simpleController">
-            Name:
-            <br />
-            <input type="text" data-ng-model="name" />{{name}}
-            <br />
-
-            <ul>
-                <li data-ng-repeat="personDetails in customers | filter:name | orderBy:'city'">{{personDetails.name | uppercase}} - {{personDetails.city | lowercase}}</li>
-            </ul>
-
-        </div>
-
+	<body  >
+        <!-- placeholder for the views-->
+        <div data-ng-view=""></div>	
 
         <script src="angular.min.js"></script>
 
         <script>
             var demoApp = angular.module('demoApp', []);
+
+            demoApp.config(function ($routeProvider) {
+                $routeProvider
+                    .when('/',
+                    {
+                        controller: 'simpleController',
+                        templateUrl: 'Partials/View1.html'
+                    })
+                    .when('/view2',
+                    {
+                        controller: 'simpleController',
+                        templateUrl: 'Partials/View2.html'
+                    })
+                    .otherwise({ redirectTo: '/' });
+            });
 
             demoApp.controller('simpleController', function ($scope) {
                 $scope.customers = [
@@ -31,6 +35,14 @@
                     { name: 'James Bell', city: 'Manchester' },
                     { name: 'Matthew Bell', city: 'Newcastle' }
                 ];
+
+                $scope.addCustomer = function () {
+                    $scope.customers.push(
+                        {
+                            name: $scope.newCustomer.name,
+                            city: $scope.newCustomer.city
+                        });
+                };
             });
         </script>
        
